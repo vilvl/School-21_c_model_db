@@ -47,14 +47,14 @@ int insert(FILE *fp, entrie *entity, enum db_names db_name) {
     return 0;
 }
 
-int update(FILE *fp, int id, entrie *ent, enum db_names db_name) {
+int update(FILE *fp, int id, entrie *entity, enum db_names db_name) {
     if (!fp)
         return -1;
     int entrie_count = get_records_count_in_file(fp, db_name);
     for (int i = 0; i < entrie_count; ++i) {
         entrie cur = read_record_from_file(fp, i, db_name);
         if (cur.rec.id == id) {
-            write_record_in_file(fp, ent, i, db_name);
+            write_record_in_file(fp, entity, i, db_name);
             return 1;
         }
     }

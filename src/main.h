@@ -5,10 +5,17 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+enum operations {
+    INSERT,
+    DELETE,
+    UPDATE,
+    SELECT
+};
+
 enum db_names {
-    LEVELS,
-    MODULES,
-    EVENTS
+    LEVELS = 1,
+    MODULES = 2,
+    EVENTS = 3
 };
 
 struct levels_entrie {
