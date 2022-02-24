@@ -5,6 +5,18 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+#ifndef DB_MODULES_PATH
+    #define DB_MODULES_PATH "materials/master_modules.db"
+#endif
+#ifndef DB_LEVELS_PATH
+    #define DB_LEVELS_PATH "materials/master_levels.db"
+#endif
+#ifndef DB_EVENTS_PATH
+    #define DB_EVENTS_PATH "materials/master_status_events.db"
+#endif
+
+#define PROMPT "-> "
+
 enum operations {
     INSERT,
     DELETE,
@@ -13,8 +25,8 @@ enum operations {
 };
 
 enum db_names {
-    LEVELS = 1,
-    MODULES = 2,
+    MODULES = 1,
+    LEVELS = 2,
     EVENTS = 3
 };
 
@@ -44,7 +56,7 @@ typedef struct entrie {
     enum db_names db_name;
     union {
         int id;
-        struct levels_entrie level;
+        struct levels_entrie levels;
         struct modules_entrie modules;
         struct events_entrie events;
     } rec;
@@ -64,14 +76,15 @@ void swap_records_in_file(FILE *pfile, int record_index1, int record_index2, enu
 long get_file_size_in_bytes(FILE *pfile);
 long get_records_count_in_file(FILE *pfile, enum db_names db_name);
 
-void quickSort(FILE *fp, int low, int high);
-int compare_with_entrie(FILE* fp, int, entrie*);
-int compare_entries(entrie *a, entrie *b);
+// void quickSort(FILE *fp, int low, int high);
+// int compare_with_entrie(FILE* fp, int, entrie*);
+// int compare_entries(entrie *a, entrie *b);
 
-int scan_int(int* mode);
-
-int ret_end(int code, FILE* file );
-void print_file_info(FILE* fp, enum db_names);
-void print_file(FILE* fp, int entr_count);
+int scan_int(int*);
+int scan_id(int*, char*);
+int scan_char(char buf[], int size, char* name);
+// int ret_end(int code, FILE* file );
+// void print_file_info(FILE* fp, enum db_names);
+// void print_file(FILE* fp, int entr_count);
 
 #endif  // SRC_MAIN_H_

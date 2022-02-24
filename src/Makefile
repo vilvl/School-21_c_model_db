@@ -6,6 +6,10 @@ NAME_1=state_sort
 NAME_2=state_search
 NAME_3=clear_state
 
+DFLAGS= -DDB_MODULES_PATH="$(CURDIR)/../materials/master_modules.db" \
+        -DDB_LEVELS_PATH="$(CURDIR)/../materials/master_levels.db" \
+        -DDB_EVENTS_PATH="$(CURDIR)/../materials/master_status_events.db"
+
 EXE_1=Quest_1
 EXE_2=Quest_2
 EXE_3=Quest_3
@@ -35,7 +39,7 @@ $(BUILD_PATH)/$(EXE_3): Makefile $(OBJECTS_3) main.h
 	$(CC) $(OBJECTS_3) -o $(BUILD_PATH)/$(EXE_3)
 
 %.o: %.c
-	$(CC) $(CFLAGS) $< -o $@
+	$(CC) $(CFLAGS) $(DFLAGS) $< -o $@
 
 clean:
 	rm -f *.o

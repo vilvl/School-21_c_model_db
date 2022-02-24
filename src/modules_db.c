@@ -12,39 +12,42 @@ void welcome() {
     printf("\t8. Move module by id to specified memory level and cell\n");
     printf("\t9. Set protection flag of the specified memory level\n");
     printf("\t0. Exit\n");
-    printf("-> ");
+    printf(PROMPT);
 }
 
 void welcome_choose_db() {
     printf("\nPlease choose a table:\n");
-    printf("\t1. Modules\n");
-    printf("\t2. Levels\n");
-    printf("\t3. Status events\n");
+    printf("\t%d. Modules\n", MODULES);
+    printf("\t%d. Levels\n", LEVELS);
+    printf("\t%d. Status events\n", EVENTS);
     printf("\t0. Go back\n");
-    printf("-> ");
+    printf(PROMPT);
 }
 
 
+void process_operation_on_db(enum operations oper, enum db_names db_name) {
+    switch (db_name) {
+        case MODULES: modules_process_operation(oper); break;
+        case LEVELS: levels_process_operation(oper); break;
+        case EVENTS: events_process_operation(oper); break;
+    }
+}
 
-
-int choose_db(enum operations what_next) {
+void choose_db(enum operations oper) {
     int mode = -1;
     int db_name = 0;
     while (mode && !db_name) {
         welcome_choose_db();
         if (!scan_int(&mode)) mode = -1;
         switch (mode) {
-            case 1: db_name = MODULES; break;
-            case 2: db_name = LEVELS; break;
-            case 3: db_name = EVENTS; break;
+            case MODULES:
+            case LEVELS:
+            case EVENTS:
+                process_operation_on_db(oper, mode); break;
             case 0: break;
             default: printf("n/a\n");
         }
     }
-    if (db_name) {
-
-    }
-    return 0;
 }
 
 int main() {

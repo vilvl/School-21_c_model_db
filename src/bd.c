@@ -8,6 +8,7 @@ size_t size_of_entrie(db_name) {
     }
 }
 
+
 // Function of reading a record of a given type from a file by its serial number.
 entrie read_record_from_file(FILE *pfile, int index, enum db_names db_name) {
     int offset = index * size_of_entrie(db_name);

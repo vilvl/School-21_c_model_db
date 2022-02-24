@@ -39,14 +39,16 @@ int delete(FILE *fp, int id, enum db_names db_name)  {
     return 0;
 }
 
+// 1 for success, -1 for error
 int insert(FILE *fp, entrie *entity, enum db_names db_name) {
     if (!fp)
         return -1;
     int entrie_count = get_records_count_in_file(fp, db_name);
     write_record_in_file(fp, entity, entrie_count, db_name);
-    return 0;
+    return 1;
 }
 
+// 1 for success, -1 for error, 0 for no match
 int update(FILE *fp, int id, entrie *entity, enum db_names db_name) {
     if (!fp)
         return -1;
