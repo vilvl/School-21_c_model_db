@@ -1,11 +1,11 @@
 #include "main.h"
 
 int levels_scan_entrie(entrie* ent) {
-    if (scan_id(&ent->rec.id, "id") == EOF)
+    if (scan_id(&ent->rec.id, "id", get_db_name(ent->db_name)) == EOF)
         return EOF;
-    if (scan_id(&ent->rec.levels.cells, "cell") == EOF)
+    if (scan_id(&ent->rec.levels.cells, "cell", get_db_name(ent->db_name)) == EOF)
         return EOF;
-    if (scan_id(&ent->rec.levels.protected, "protection") == EOF)
+    if (scan_id(&ent->rec.levels.protected, "protection", get_db_name(ent->db_name)) == EOF)
         return EOF;
     return 0;
 }
@@ -26,6 +26,7 @@ void levels_process_operation(enum operations oper) {
         case UPDATE: update_connector(fp, &ent, levels_scan_entrie); break;
         case DELETE: delete_connector(fp, &ent); break;
         case SELECT: select_connector(fp, &ent, levels_print_entrie); break;
+        case SELECT_ALL: select_all_connector(fp, &ent, levels_print_entrie); break;
     }
     fclose(fp);
 }

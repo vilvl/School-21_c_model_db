@@ -1,15 +1,15 @@
 #include "main.h"
 
 int modules_scan_entrie(entrie* ent) {
-    if (scan_id(&ent->rec.id, "id") == EOF)
+    if (scan_id(&ent->rec.id, "id", get_db_name(ent->db_name)) == EOF)
         return EOF;
-    if (scan_char(ent->rec.modules.name, 30, "module name (25 max len)") == EOF)
+    if (scan_char(ent->rec.modules.name, 30, "module name (25 max len)", get_db_name(ent->db_name)) == EOF)
         return EOF;
-    if (scan_id(&ent->rec.modules.lvl_id, "level") == EOF)
+    if (scan_id(&ent->rec.modules.lvl_id, "level", get_db_name(ent->db_name)) == EOF)
         return EOF;
-    if (scan_id(&ent->rec.modules.cell, "level") == EOF)
+    if (scan_id(&ent->rec.modules.cell, "cell", get_db_name(ent->db_name)) == EOF)
         return EOF;
-    if (scan_id(&ent->rec.modules.delete_flag, "level") == EOF)
+    if (scan_id(&ent->rec.modules.delete_flag, "deletion flag", get_db_name(ent->db_name)) == EOF)
         return EOF;
     return 0;
 }
@@ -32,6 +32,7 @@ void modules_process_operation(enum operations oper) {
         case UPDATE: update_connector(fp, &ent, modules_scan_entrie); break;
         case DELETE: delete_connector(fp, &ent); break;
         case SELECT: select_connector(fp, &ent, modules_print_entrie); break;
+        case SELECT_ALL: select_all_connector(fp, &ent, modules_print_entrie); break;
     }
     fclose(fp);
 }
