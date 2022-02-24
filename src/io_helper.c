@@ -23,6 +23,7 @@ int scan_int(int* mode) {
     int c;
     while ((c = scanf("%*c"))) {
         if (c == EOF) {
+            fseek(stdin, 0, SEEK_END);
             *mode = -1;
             break;
         }
@@ -31,16 +32,28 @@ int scan_int(int* mode) {
 }
 
 int scan_id(int *id, char *name) {
-    printf("\nEnter %s or CTRL+D to go back:\n", name);
+    printf("\nEnter %s, CTRL+D to go back:\n", name);
     int a = 0;
     while (!a) {
         printf(PROMPT);
-        scan_int(id);
+        a = scan_int(id);
         if (a == EOF)
             return EOF;
         else if (a)
             return a;
         printf("\n");
     }
+    return 0;
+}
+
+int scan_date(char buf[], int size, char* welcome) {
+    if (scan_char(buf, size, welcome) == EOF)
+        return EOF;
+    return 0;
+}
+
+int scan_time(char buf[], int size, char* welcome) {
+    if (scan_char(buf, size, welcome) == EOF)
+        return EOF;
     return 0;
 }

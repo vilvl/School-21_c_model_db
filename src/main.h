@@ -8,8 +8,8 @@
 #ifndef _DB_MODULES_PATH_
     #define _DB_MODULES_PATH_ "materials/master_modules.db"
 #endif
-#ifndef DB_LEVELS_PATH_
-    #define DB_LEVELS_PATH_ "materials/master_levels.db"
+#ifndef _DB_LEVELS_PATH_
+    #define _DB_LEVELS_PATH_ "materials/master_levels.db"
 #endif
 #ifndef _DB_EVENTS_PATH_
     #define _DB_EVENTS_PATH_ "materials/master_status_events.db"
@@ -99,6 +99,8 @@ long get_records_count_in_file(FILE *pfile, enum db_names db_name);
 int scan_int(int*);
 int scan_id(int*, char*);
 int scan_char(char buf[], int size, char* name);
+int scan_date(char buf[], int size, char* welcome);
+int scan_time(char buf[], int size, char* welcome);
 // int ret_end(int code, FILE* file );
 // void print_file_info(FILE* fp, enum db_names);
 // void print_file(FILE* fp, int entr_count);
