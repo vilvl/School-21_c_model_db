@@ -19,7 +19,8 @@ void levels_print_entrie(entrie* ent) {
 }
 
 void levels_process_operation(enum operations oper) {
-    FILE* fp = fopen(DB_LEVELS_PATH, "r+");
+    FILE* fp = fopen(DB_LEVELS_PATH_, "r+");
+    // FILE* fp = fopen("materials/master_levels.db", "r+");
     entrie ent = {.db_name = LEVELS};
     switch (oper) {
         case INSERT: insert_connector(fp, &ent, levels_scan_entrie); break;

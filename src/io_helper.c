@@ -12,7 +12,7 @@ void trim(char buf[], int size) {
 
 int scan_char(char buf[], int size, char* name) {
     printf("\nEnter %s or CTRL+D to go back:\n", name);
-    if (fgets(buf, size, stdin) == EOF)
+    if (fgets(buf, size, stdin) == NULL)
         return EOF;
     trim(buf, size);
     return 0;
@@ -42,4 +42,5 @@ int scan_id(int *id, char *name) {
             return a;
         printf("\n");
     }
+    return 0;
 }

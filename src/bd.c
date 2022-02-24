@@ -1,11 +1,12 @@
 #include "main.h"
 
-size_t size_of_entrie(db_name) {
+size_t size_of_entrie(enum db_names db_name) {
     switch (db_name) {
         case LEVELS: return sizeof(struct levels_entrie);
         case MODULES: return sizeof(struct modules_entrie);
         case EVENTS: return sizeof(struct events_entrie);
     }
+    return 0;
 }
 
 

@@ -25,7 +25,7 @@ void modules_print_entrie(entrie* ent) {
 }
 
 void modules_process_operation(enum operations oper) {
-    FILE* fp = fopen(DB_MODULES_PATH, "r+");
+    FILE* fp = fopen(DB_MODULES_PATH_, "r+");
     entrie ent = {.db_name = MODULES};
     switch (oper) {
         case INSERT: insert_connector(fp, &ent, modules_scan_entrie); break;

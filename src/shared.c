@@ -1,7 +1,7 @@
 #include "main.h"
 
 // 1 for success, -1 for error, 0 for no match
-int select(FILE *fp, int id, entrie* ent, enum db_names db_name) {
+int my_select(FILE *fp, int id, entrie* ent, enum db_names db_name) {
     if (!fp)
         return -1;
     int entrie_count = get_records_count_in_file(fp, db_name);
@@ -16,7 +16,7 @@ int select(FILE *fp, int id, entrie* ent, enum db_names db_name) {
 }
 
 // 1 for success, -1 for error, 0 for no match
-int delete(FILE *fp, int id, enum db_names db_name)  {
+int my_delete(FILE *fp, int id, enum db_names db_name)  {
     if (!fp)
         return -1;
     int entrie_count = get_records_count_in_file(fp, db_name);
@@ -40,7 +40,7 @@ int delete(FILE *fp, int id, enum db_names db_name)  {
 }
 
 // 1 for success, -1 for error
-int insert(FILE *fp, entrie *entity, enum db_names db_name) {
+int my_insert(FILE *fp, entrie *entity, enum db_names db_name) {
     if (!fp)
         return -1;
     int entrie_count = get_records_count_in_file(fp, db_name);
@@ -49,7 +49,7 @@ int insert(FILE *fp, entrie *entity, enum db_names db_name) {
 }
 
 // 1 for success, -1 for error, 0 for no match
-int update(FILE *fp, int id, entrie *entity, enum db_names db_name) {
+int my_update(FILE *fp, int id, entrie *entity, enum db_names db_name) {
     if (!fp)
         return -1;
     int entrie_count = get_records_count_in_file(fp, db_name);

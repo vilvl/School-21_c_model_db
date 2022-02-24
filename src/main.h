@@ -5,14 +5,14 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#ifndef DB_MODULES_PATH
-    #define DB_MODULES_PATH "materials/master_modules.db"
+#ifndef DB_MODULES_PATH_
+    #define DB_MODULES_PATH_ "materials/master_modules.db"
 #endif
-#ifndef DB_LEVELS_PATH
-    #define DB_LEVELS_PATH "materials/master_levels.db"
+#ifndef DB_LEVELS_PATH_
+    #define DB_LEVELS_PATH_ "materials/master_levels.db"
 #endif
-#ifndef DB_EVENTS_PATH
-    #define DB_EVENTS_PATH "materials/master_status_events.db"
+#ifndef DB_EVENTS_PATH_
+    #define DB_EVENTS_PATH_ "materials/master_status_events.db"
 #endif
 
 #define PROMPT "-> "
@@ -64,11 +64,27 @@ typedef struct entrie {
 
 //////////////////////////////////////////////////////
 // 1 for success, -1 for error, 0 for no match
-int select(FILE *db, int id, entrie* ent, enum db_names db_name);
-int delete(FILE *db, int id, enum db_names db_name);
-int insert(FILE *db, entrie *entity, enum db_names db_name);
-int update(FILE *db, int id, entrie *entity, enum db_names db_name);
+int my_select(FILE*, int, entrie*, enum db_names);
+int my_delete(FILE*, int, enum db_names);
+int my_insert(FILE*, entrie*, enum db_names);
+int my_update(FILE*, int, entrie *, enum db_names);
 //////////////////////////////////////////////////////
+
+void select_connector(FILE* fp, entrie* ent, void (*cb_print_ent)(entrie*));
+void delete_connector(FILE* fp, entrie* ent);
+void insert_connector(FILE* fp, entrie* ent, int (*cb_scanf_ent)(entrie*));
+void update_connector(FILE* fp, entrie* ent, int (*cb_scanf_ent)(entrie*));
+//////////////////////////////////////////////////////
+
+void get_active_modeules();
+void delete_module_by_id();
+void set_protection_by_id();
+void set_lvl_and_cell_by_id();
+void set_protection_by_lvl();
+
+void modules_process_operation(enum operations);
+void levels_process_operation(enum operations);
+void events_process_operation(enum operations);
 
 entrie read_record_from_file(FILE *pfile, int index, enum db_names db_name);
 void write_record_in_file(FILE *pfile, const entrie *record_to_write, int index, enum db_names db_name);
