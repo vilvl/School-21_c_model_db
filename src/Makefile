@@ -4,9 +4,9 @@ CFLAGS=-c -Wall -Werror -Wextra
 BUILD_PATH=../build
 NAME_1=Quest_1
 
-DFLAGS= -DDB_MODULES_PATH="$(CURDIR)/../materials/master_modules.db" \
-        -DDB_LEVELS_PATH="$(CURDIR)/../materials/master_levels.db" \
-        -DDB_EVENTS_PATH="$(CURDIR)/../materials/master_status_events.db"
+DFLAGS= -D_DB_MODULES_PATH_="$(CURDIR)/../materials/master_modules.db" \
+        -DDB_LEVELS_PATH_="$(CURDIR)/../materials/master_levels.db" \
+        -D_DB_EVENTS_PATH_="$(CURDIR)/../materials/master_status_events.db"
 
 EXE_1=Quest_1
 
@@ -17,7 +17,7 @@ SOURCES_1=bd.c \
 		  modules.c \
 		  shared_connector.c \
 		  shared.c \
-		  status_evenst.c
+		  status_events.c
 OBJECTS_1=$(SOURCES_1:.c=.o)
 
 

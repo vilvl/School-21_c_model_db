@@ -25,7 +25,7 @@ void events_print_entrie(entrie* ent) {
 }
 
 void events_process_operation(enum operations oper) {
-    FILE* fp = fopen(DB_EVENTS_PATH_, "r+");
+    FILE* fp = fopen(_DB_EVENTS_PATH_, "r+");
     entrie ent = {.db_name = EVENTS};
     switch (oper) {
         case INSERT: insert_connector(fp, &ent, events_scan_entrie); break;

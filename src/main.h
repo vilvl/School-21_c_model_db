@@ -5,14 +5,14 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#ifndef DB_MODULES_PATH_
-    #define DB_MODULES_PATH_ "materials/master_modules.db"
+#ifndef _DB_MODULES_PATH_
+    #define _DB_MODULES_PATH_ "materials/master_modules.db"
 #endif
 #ifndef DB_LEVELS_PATH_
     #define DB_LEVELS_PATH_ "materials/master_levels.db"
 #endif
-#ifndef DB_EVENTS_PATH_
-    #define DB_EVENTS_PATH_ "materials/master_status_events.db"
+#ifndef _DB_EVENTS_PATH_
+    #define _DB_EVENTS_PATH_ "materials/master_status_events.db"
 #endif
 
 #define PROMPT "-> "
